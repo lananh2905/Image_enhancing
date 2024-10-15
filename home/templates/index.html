@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Enhancing</title>
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+</head>
+<body>
+    <h1>Image Enhancing</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Group cho thanh chọn file -->
+        <div class="form-group">
+            <label for="image">Image:</label>
+            {{ form.image }}
+        </div>
+        
+        <!-- Group cho ba thanh chọn -->
+        <div class="form-group">
+            <label for="noise_type">Noise type:</label>
+            {{ form.noise_type }}
+            
+            <label for="denoise_type">Denoise type:</label>
+            {{ form.denoise_type }}
+            
+            <label for="sharp_type">Sharp type:</label>
+            {{ form.sharp_type }}
+        </div>
+        
+        <!-- Nút upload là một hàng riêng -->
+        <div class="form-group">
+            <button type="submit">Upload</button>
+        </div>
+    </form>
+    
+    <h2>Result</h2>
+    {% if original_image %}
+        <div class="image-row">
+            <div>
+                <h3>Original</h3>
+                <img src="data:image/png;base64,{{ original_image }}" alt="Original Image"/>
+            </div>
+            <div>
+                <h3>Noisy</h3>
+                <img src="data:image/png;base64,{{ noisy_image }}" alt="Noisy Image"/>
+            </div>
+            <div>
+                <h3>Denoise</h3>
+                <img src="data:image/png;base64,{{ denoise_image }}" alt="Denoise Image"/>
+            </div>
+            <div>
+                <h3>Sharpening</h3>
+                <img src="data:image/png;base64,{{ sharp_image }}" alt="Sharpening Image"/>
+            </div>
+        </div>
+        <div class="image-row">
+            <div>
+                <h3>Sobel Edge</h3>
+                <img src="data:image/png;base64,{{ sobel_image }}" alt="Sobel Image"/>
+            </div>
+            <div>
+                <h3>Prewitt Edge</h3>
+                <img src="data:image/png;base64,{{ prewitt_image }}" alt="Prewitt Image"/>
+            </div>
+            <div>
+                <h3>Canny Edge</h3>
+                <img src="data:image/png;base64,{{ canny_image }}" alt="Canny Image"/>
+            </div>
+        </div>
+    {% endif %}
+</body>
+</html>
