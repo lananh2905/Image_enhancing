@@ -10,9 +10,9 @@
 
 ## Setup
 
-* **Install các thư viện của python:** cv2, os, pandas, numpy, django
+* **Install các thư viện của python:** cv2, pandas, numpy, django
 ```bash
-pip install opencv-python, os, pandas, numpy, django
+pip install opencv-python, pandas, numpy, django
 ```
 
 * **Chạy chương trình bằng lệnh:**
